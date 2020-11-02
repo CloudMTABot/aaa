@@ -109,9 +109,9 @@ jobs:
             git checkout docker
             echo "Image release: ${MBT_VERSION}"
             docker build -t michci:${MBT_VERSION} .
-            docker login docker.pkg.github.com -u michawai -p $MICHAWAI_GITHUB_TOKEN
-            docker tag michci:${MBT_VERSION} docker.pkg.github.com/michawai/aaa/michci:${MBT_VERSION}
-            docker push docker.pkg.github.com/michawai/aaa/michci:${MBT_VERSION}
+            docker login ghcr.io -u michawai -p $MICHAWAI_GITHUB_TOKEN
+            docker tag michci:${MBT_VERSION} ghcr.io/michawai/aaa/michci:${MBT_VERSION}
+            docker push ghcr.io/michawai/aaa/michci:${MBT_VERSION}
 
 workflows:
   version: 2
