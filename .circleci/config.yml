@@ -86,7 +86,7 @@ jobs:
           name: publish to npm
           command: |
             npm -v
-            git push -u origin --delete dummy
+            git push -u origin --delete release
 
   image:
     docker:
@@ -147,13 +147,13 @@ workflows:
 #      - compliance:
 #          filters:  # required since `deploy` has tag filters AND requires `build`
 #            tags:
-#              only: /dummy/
+#              only: /release/
 #            branches:
 #              ignore: /.*/
       - build:
           filters:  # required since `deploy` has tag filters AND requires `build`
             tags:
-              only: /dummy/
+              only: /release/
             branches:
               ignore: /.*/
       - test:
@@ -161,7 +161,7 @@ workflows:
             - build
           filters:  # required since `deploy` has tag filters AND requires `test`
             tags:
-              only: /dummy/
+              only: /release/
             branches:
               ignore: /.*/
       - release:
@@ -169,7 +169,7 @@ workflows:
             - test
           filters:
             tags:
-              only: /dummy/
+              only: /release/
             branches:
               ignore: /.*/
       - publish:
@@ -177,7 +177,7 @@ workflows:
             - release
           filters:
             tags:
-              only: /dummy/
+              only: /release/
             branches:
               ignore: /.*/
       - image:
@@ -185,6 +185,6 @@ workflows:
             - release
           filters:  # job runs on tag 'release' for no branches
             tags:
-              only: /dummy/
+              only: /release/
             branches:
               ignore: /.*/
